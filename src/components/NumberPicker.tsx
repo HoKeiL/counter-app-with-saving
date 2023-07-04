@@ -2,31 +2,49 @@ import { useState } from "react";
 
 export default function NumberPicker(): JSX.Element {
   const [counterValueFromCurrentRender, queueRerenderWithNewCounterValue] =
-    useState(0);
+    useState("⏰");
   const [favouriteValueFromCurrentRender, queueRerenderWithNewFavouriteValue] =
-    useState(0);
+    useState("");
 
-  const handleAddOneToCounter = () => {
-    queueRerenderWithNewCounterValue(counterValueFromCurrentRender + 1);
+  const handleClock = () => {
+    queueRerenderWithNewCounterValue("⏰");
   };
 
-  const handleSubtractOneFromCounter = () => {
-    queueRerenderWithNewCounterValue(counterValueFromCurrentRender - 1);
+  const handleFriedEgg = () => {
+    queueRerenderWithNewCounterValue("🍳");
   };
 
-  const handleStoreCurrentCount = () => {
-    queueRerenderWithNewFavouriteValue(counterValueFromCurrentRender);
+  const handlePlate = () => {
+    queueRerenderWithNewCounterValue("🍽️");
+  };
+
+  const handleYummyFace = () => {
+    queueRerenderWithNewCounterValue("😋");
+  };
+
+  const handleRamen = () => {
+    queueRerenderWithNewCounterValue("🍜");
   };
 
   return (
     <>
-      <h1>Number picker</h1>
-      <p>Your stored number: {favouriteValueFromCurrentRender}</p>
-      <p>Counter: {counterValueFromCurrentRender}</p>
-      <button onClick={handleSubtractOneFromCounter}>-1</button>
-      <button onClick={handleAddOneToCounter}>+1</button>
+      <h1>Emoji picker</h1>
+      <p>Your favourite emoji: {favouriteValueFromCurrentRender}</p>
+      <p>Current emoji: {counterValueFromCurrentRender}</p>
+      <button onClick={handleClock}>⏰</button>
+      <button onClick={handleFriedEgg}>🍳</button>
+      <button onClick={handlePlate}>🍽️</button>
+      <button onClick={handleYummyFace}>😋</button>
+      <button onClick={handleRamen}>🍜</button>
       <hr />
-      <button onClick={handleStoreCurrentCount}>Store current count</button>
+      <button
+        onClick={() =>
+          queueRerenderWithNewFavouriteValue(counterValueFromCurrentRender)
+        }
+      >
+        {" "}
+        Store as my Favourite Emoji
+      </button>
     </>
   );
 }
