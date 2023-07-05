@@ -1,3 +1,4 @@
+import { join } from "path";
 import { useState } from "react";
 
 export default function NumberPicker(): JSX.Element {
@@ -27,8 +28,8 @@ export default function NumberPicker(): JSX.Element {
   };
 
   const handleStoreFavouriteEmoji = () => {
-    queueRerenderWithNewFavouriteValue((prevStoredValues) => [
-      ...prevStoredValues,
+    queueRerenderWithNewFavouriteValue([
+      ...favouriteValueFromCurrentRender,
       counterValueFromCurrentRender,
     ]);
   };
@@ -36,7 +37,10 @@ export default function NumberPicker(): JSX.Element {
   return (
     <>
       <h1>Emoji picker</h1>
-      <p>Your favourite emoji: {favouriteValueFromCurrentRender}</p>
+      <p>Your favourite emoji: {favouriteValueFromCurrentRender.map((handleStoreFavouriteEmoji, index) => (
+        <li key = {index}>{handleStoreFavouriteEmoji}</li>
+      )
+      )}</p>
       <p>Current emoji: {counterValueFromCurrentRender}</p>
       <button onClick={handleClock}>⏰</button>
       <button onClick={handleFriedEgg}>🍳</button>
