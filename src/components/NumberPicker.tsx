@@ -4,7 +4,7 @@ export default function NumberPicker(): JSX.Element {
   const [counterValueFromCurrentRender, queueRerenderWithNewCounterValue] =
     useState("⏰");
   const [favouriteValueFromCurrentRender, queueRerenderWithNewFavouriteValue] =
-    useState("");
+    useState<string[]>([]);
 
   const handleClock = () => {
     queueRerenderWithNewCounterValue("⏰");
@@ -26,6 +26,13 @@ export default function NumberPicker(): JSX.Element {
     queueRerenderWithNewCounterValue("🍜");
   };
 
+  const handleStoreFavouriteEmoji = () => {
+    queueRerenderWithNewFavouriteValue((prevStoredValues) => [
+      ...prevStoredValues,
+      counterValueFromCurrentRender,
+    ]);
+  };
+
   return (
     <>
       <h1>Emoji picker</h1>
@@ -37,12 +44,7 @@ export default function NumberPicker(): JSX.Element {
       <button onClick={handleYummyFace}>😋</button>
       <button onClick={handleRamen}>🍜</button>
       <hr />
-      <button
-        onClick={() =>
-          queueRerenderWithNewFavouriteValue(counterValueFromCurrentRender)
-        }
-      >
-        {" "}
+      <button onClick={handleStoreFavouriteEmoji}>
         Store as my Favourite Emoji
       </button>
     </>
