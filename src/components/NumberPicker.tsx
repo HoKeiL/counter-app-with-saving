@@ -2,46 +2,46 @@ import { join } from "path";
 import { useState } from "react";
 
 export default function NumberPicker(): JSX.Element {
-  const [counterValueFromCurrentRender, queueRerenderWithNewCounterValue] =
+  const [counter, setCounter] =
     useState("⏰");
-  const [favouriteValueFromCurrentRender, queueRerenderWithNewFavouriteValue] =
+  const [favourite, setFavourite] =
     useState<string[]>([]);
 
   const handleClock = () => {
-    queueRerenderWithNewCounterValue("⏰");
+    setCounter("⏰");
   };
 
   const handleFriedEgg = () => {
-    queueRerenderWithNewCounterValue("🍳");
+    setCounter("🍳");
   };
 
   const handlePlate = () => {
-    queueRerenderWithNewCounterValue("🍽️");
+    setCounter("🍽️");
   };
 
   const handleYummyFace = () => {
-    queueRerenderWithNewCounterValue("😋");
+    setCounter("😋");
   };
 
   const handleRamen = () => {
-    queueRerenderWithNewCounterValue("🍜");
+    setCounter("🍜");
   };
 
   const handleStoreFavouriteEmoji = () => {
-    queueRerenderWithNewFavouriteValue([
-      ...favouriteValueFromCurrentRender,
-      counterValueFromCurrentRender,
+    setFavourite([
+      ...favourite,
+      counter,
     ]);
   };
 
   return (
     <>
       <h1>Emoji picker</h1>
-      <p>Your favourite emoji: {favouriteValueFromCurrentRender.map((handleStoreFavouriteEmoji, index) => (
+      <p>Your favourite emoji: {favourite.map((handleStoreFavouriteEmoji, index) => (
         <li key = {index}>{handleStoreFavouriteEmoji}</li>
       )
       )}</p>
-      <p>Current emoji: {counterValueFromCurrentRender}</p>
+      <p>Current emoji: {counter}</p>
       <button onClick={handleClock}>⏰</button>
       <button onClick={handleFriedEgg}>🍳</button>
       <button onClick={handlePlate}>🍽️</button>
